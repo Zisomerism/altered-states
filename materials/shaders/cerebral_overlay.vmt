@@ -1,0 +1,70 @@
+"Refract"
+{
+	"%keywords" "tf"
+	"$refractamount" "0.5"
+	"$forcerefract" "1"
+	"$model" "1"
+	"$refracttint" "{155 155 155}"
+	"$normalmap" "shaders/overlay_normal"
+	"$bumpframe" "0"
+	"$bluramount" "2"
+	"$refracttinttexture" "shaders/cerebral_overlay"
+
+	"$translate" "[0.0 0.0]"
+	"$rotate" "[0.0 0.0]"
+	"$scale" "[0.5 0.5]"
+	"$var1" "0"
+	"$var2" "0"
+
+	"Proxies"
+	{
+		"sine"
+		{
+			"sinemax" "1800"
+			"sinemin" "-1800"
+			"sineperiod" "100"
+			"resultvar" "$rotate[0]"
+		}
+		"sine"
+		{
+			"sinemax" "0.1"
+			"sinemin" "-0.1"
+			"sineperiod" "1"
+			"resultvar" "$translate[0]"
+		}
+		"sine"
+		{
+			"sinemax" "0.1"
+			"sinemin" "-0.1"
+			"sineperiod" "1"
+			"resultvar" "$translate[1]"
+		}
+		"texturetransform"
+		{
+			"scalevar" "$scale"
+			"rotatevar" "$rotate"
+			"translatevar" "$translate"
+			"resultvar" "$bumptransform"
+		}
+		"sine"
+		{
+			"sinemax" "0.5"
+			"sinemin" "-0.5"
+			"sineperiod" "10"
+			"resultvar" "$var1"
+		}
+		"playerspeed"
+		{
+			"scale" "0.005"
+			"resultvar" "$var2"
+		}
+		"subtract"
+		{
+			"srcvar1" "$var1"
+			"srcvar2" "$var2"
+			"resultvar" "$refractamount"
+		}
+	}
+
+}
+
